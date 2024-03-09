@@ -1,0 +1,7 @@
+= gitea
+
+== resources
+
+* https://about.gitea.com/[Official website]
+* https://docs.gitea.com/installation/install-with-docker-rootless[Container rootless install]
+

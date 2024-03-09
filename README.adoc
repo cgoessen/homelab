@@ -1,8 +1,10 @@
-# homelab
+= homelab
 
 Collections of notes, scripts and other resources to create my homelab.
 
-## Motivations
+:toc:
+
+== Motivations
 
 Over reliance on external service provider and ad-hoc home IT infrastructure have caused me to lose some data 
 permanently.
@@ -21,7 +23,7 @@ everything and provide only access through a well secured vpn.
 
 
 
-## Requirements
+== Requirements
 
 * self-hosted git server with replication to github
 * secret vault (most likely openbao)
@@ -32,10 +34,15 @@ everything and provide only access through a well secured vpn.
 * certificate automation
 * self-hosted docs solution
 * self-hosted media center
+* image repository
+* observability
+* identity and authorization system
 
 nice to have:
 
 * mirror repo
 * lan caching
 * image pipeline
+
+include::git/README.adoc[leveloffset=1]
 

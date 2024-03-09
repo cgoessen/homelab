@@ -1,0 +1,13 @@
+= GIT
+
+== Requirements/motivations
+
+I need a self-hosted git server that will be independent of any container platform or virtual machine orchestrator.
+This Git server will be used as a source of truth for the config of the above mentions.
+Nevertheless, I believe it will be easier to have that server running as a container.
+
+I want a solution that provides some runners for CI/CD.
+
+That solution should be as lean as possible.
+
+include::gitea/README.adoc[leveloffset=1]

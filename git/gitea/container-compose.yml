@@ -1,0 +1,36 @@
+version: "3"
+volumes:
+  gitea-data:
+    driver: local
+  gitea-config:
+    driver: local
+  gitea-runner-data:
+    driver: local
+services:
+  gitea-server:
+    image: gitea/gitea:1.21.7-rootless
+    restart: always
+    container_name: gitea-server
+    volumes:
+      - gitea-data:/var/lib/gitea
+      - gitea-config:/etc/gitea
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "3000:3000"
+      - "2222:2222"
+  gitea-default-runner:
+    #todo fix the -dind-rootless
+    image: gitea/act_runner:0.2.6
+    restart: always
+    privileged: true
+    container_name: gitea-default-runner
+    depends_on:
+      - gitea-server
+    volumes:
+      - gitea-runner-data:/data
+      - /var/run/user/1000/podman/podman.sock:/var/run/docker.sock #not working
+    environment:
+      - GITEA_INSTANCE_URL=http://gitea-server:3000
+      - DOCKER_HOST=unix:///var/run/docker.sock
+      #- GITEA_RUNNER_REGISTRATION_TOKEN=<token> #on first run put a token here
