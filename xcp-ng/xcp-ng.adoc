@@ -1,0 +1,25 @@
+= XCP-NG
+
+XenServer based virtual machine
+
+https://xcp-ng.org/
+
+== XOA (XenOrchestra)
+
+== Cheatsheet
+
+list all vm:
+
+```shell
+# xe vm-list
+uuid ( RO)           : 20f80467-ea0a-4d11-be5a-5df3d3e4f1b3
+     name-label ( RW): XOA
+    power-state ( RO): halted
+```
+
+start a vm
+
+`# xe vm-start vm="20f80467-ea0a-4d11-be5a-5df3d3e4f1b3"`
+
+
+

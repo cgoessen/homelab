@@ -21,16 +21,36 @@ services:
       - "2222:2222"
   gitea-default-runner:
     #todo fix the -dind-rootless
-    image: gitea/act_runner:0.2.6
+    image: gitea/act_runner:0.2.6-dind-rootless
     restart: always
     privileged: true
     container_name: gitea-default-runner
+    user: 1000:1000
     depends_on:
       - gitea-server
     volumes:
       - gitea-runner-data:/data
-      - /var/run/user/1000/podman/podman.sock:/var/run/docker.sock #not working
+      #- /var/run/user/1000/podman/podman.sock:/var/run/docker.sock #not working
+      - ./runner-config.yaml:/config.yaml
     environment:
       - GITEA_INSTANCE_URL=http://gitea-server:3000
-      - DOCKER_HOST=unix:///var/run/docker.sock
+      #- DOCKER_HOST=unix:///var/run/docker.sock
+      - DOCKER_HOST=tcp://daemon:2376
+      - CONFIG_FILE=/config.yaml
       #- GITEA_RUNNER_REGISTRATION_TOKEN=<token> #on first run put a token here
+#    devices:
+#      - /dev/fuse:/dev/fuse
+#    security_opt:
+#      - seccomp=unconfined
+  daemon:
+    image: docker:23.0.6-dind
+#    environment:
+#      - DOCKER_TLS_CERTDIR=/certs
+    privileged: true
+#    environment:
+#      - DOCKER_HOST=unix:///var/run/docker.sock
+    ports:
+      - "2376:2376"
+#    volumes:
+#      - /var/run/user/1000/podman/podman.sock:/var/run/docker.sock
+#      - docker-certs:./certs

@@ -1,0 +1,12 @@
+= OpenVPN
+
+Installing an openVPN server to administer and connect from the internet.
+
+== Base install
+
+Installing on xcp-ng.
+
+Debian with packages:
+```
+openvpn ddupdate apparmor-utils syslog-ng
+```
