@@ -21,5 +21,9 @@ start a vm
 
 `# xe vm-start vm="20f80467-ea0a-4d11-be5a-5df3d3e4f1b3"`
 
+== Management agent
+
+https://github.com/xenserver/xe-guest-utilities/releases
+
 
 
