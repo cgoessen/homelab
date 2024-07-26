@@ -9,3 +9,12 @@ services:
     restart: unless-stopped
     privileged: true
     network_mode: host
+  esphome:
+    container_name: esphome
+    image: esphome/esphome
+    volumes:
+      - /opt/esphome/config:/config
+      - /etc/localtime:/etc/localtime:ro
+    restart: always
+    privileged: true
+    network_mode: host

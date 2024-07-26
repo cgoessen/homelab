@@ -1,0 +1,6 @@
+= Home Assistant
+
+== ESPHome
+
+With the current installation (docker) some options are not available.
+ESPHome allows us to flash and manage espHome devices
