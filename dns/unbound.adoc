@@ -5,3 +5,21 @@ Installing on VM on xcp-ng
 == Installation
 
 `apt install unbound`
+
+== Change config and restart
+
+config path `etc/unbound/unbound.conf.d/local-gssn-net.conf`
+
+check config:
+[source,bash]
+----
+unbound-checkconf etc/unbound/unbound.conf.d/local-gssn-net.conf
+----
+
+restart:
+
+[source,bash]
+----
+pkill -f unbound
+unbound-control start
+----
