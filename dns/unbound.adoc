@@ -1,0 +1,7 @@
+= Unbound
+
+Installing on VM on xcp-ng
+
+== Installation
+
+`apt install unbound`
