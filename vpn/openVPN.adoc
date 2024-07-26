@@ -8,5 +8,10 @@ Installing on xcp-ng.
 
 Debian with packages:
 ```
-openvpn ddupdate apparmor-utils syslog-ng
+ddupdate docker-compose docker.io
 ```
+
+ddupdate is used to set up dynamic dns.
+
+Installing with docker compose
+
