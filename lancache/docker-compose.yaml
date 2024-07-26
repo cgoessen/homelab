@@ -1,12 +1,11 @@
 services:
   lancache:
-    container_name: steamcache
+    container_name: lancache
     image: "lancachenet/monolithic:latest"
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - "/data/steam/cache:/data/cache",
-      - "/var/log/lancache:/data/logs"
+     - "/data/steam/cache:/data/cache"
+     - "/var/log/lancache:/data/logs"
     restart: unless-stopped
     ports:
-      - "8080:80"
-      - "443:443"
+     - "8080:80"
+     - "8443:443"

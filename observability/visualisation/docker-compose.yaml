@@ -1,0 +1,12 @@
+services:
+  lancache:
+    container_name: grafana
+    image: "grafana/grafana"
+    volumes:
+      - "/opt/grafana:/var/lib/grafana"
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      GF_SERVER_ROOT_URL: http://grafana.gssn.net
+      GF_INSTALL_PLUGINS: "grafana-clock-panel"
