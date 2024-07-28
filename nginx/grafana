@@ -1,5 +1,7 @@
 server {
-	listen	80;
+    listen  443 ssl;
+    ssl_certificate /etc/letsencrypt/live/grafana.gssn.net/cert.pem;
+    ssl_certificate_key /etc/letsencrypt/live/grafana.gssn.net/privkey.pem;
 	server_name	grafana.gssn.net;
 
 	location / {

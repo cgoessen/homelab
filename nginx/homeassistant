@@ -1,5 +1,7 @@
 server {
-	listen	80;
+    listen  443 ssl;
+    ssl_certificate /etc/letsencrypt/live/homeassistant.gssn.net/cert.pem;
+    ssl_certificate_key /etc/letsencrypt/live/homeassistant.gssn.net/privkey.pem;
 	server_name	homeassistant.gssn.net;
 
 	location / {
