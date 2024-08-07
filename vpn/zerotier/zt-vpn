@@ -1,0 +1,40 @@
+#!/bin/bash
+NETWORK_ID=...
+if [ "$#" != "1" ]
+then
+  echo "usage: zt-vpn on|off|status"
+  exit 1
+fi
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
+STATUS=$(zerotier-cli get $NETWORK_ID allowDefault)
+
+if [ "$1" = "on" ]
+then
+  if [ "$STATUS" = 0 ]
+     then
+     	zerotier-cli set $NETWORK_ID allowDefault=1 > /dev/null
+	zerotier-cli set $NETWORK_ID allowGlobal=1 > /dev/null
+     fi
+fi
+
+if [ "$1" = "off" ]
+then
+  if [ "$STATUS" = 1 ]
+     then
+     	zerotier-cli set $NETWORK_ID allowDefault=0 > /dev/null
+	zerotier-cli set $NETWORK_ID allowGlobal=0 > /dev/null
+     fi
+fi
+
+STATUS=$(zerotier-cli get $NETWORK_ID allowDefault)
+
+echo -n "Zero tier vpn ["
+if [ "$STATUS" = 1 ]
+  then
+   echo -n "${GREEN}ON${NC}"
+  else
+   echo -n "${RED}OFF${NC}"
+fi
+echo "]"
