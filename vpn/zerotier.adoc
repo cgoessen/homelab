@@ -1,0 +1,44 @@
+= ZeroTier
+
+== Install cli
+
+https://www.zerotier.com/download/
+
+https://docs.zerotier.com/cli/
+
+[source,bash]
+----
+curl -s 'https://raw.githubusercontent.com/zerotier/ZeroTierOne/main/doc/contact%40zerotier.com.gpg' | gpg --import && \
+if z=$(curl -s 'https://install.zerotier.com/' | gpg); then echo "$z" | sudo bash; fi
+----
+
+=== Join network
+
+Check the device id:
+[source]
+----
+# zerotier-cli status
+200 info 2601d3e4e6 1.14.0 ONLINE
+----
+
+here *2601d3e4e6*
+
+Get your network id from https://my.zerotier.com/network/
+
+[source]
+----
+zerotier-cli join <network_id>
+----
+
+
+Accept new device https://my.zerotier.com/network/<network_id>, check that the id matches, don't forget to give it a name, it'll help.
+
+== Setup Exit node
+
+https://docs.zerotier.com/exitnode/
+
+== DNS
+
+At https://my.zerotier.com/network/<network_id>
+
+under Settings>Advanced>DNS>server

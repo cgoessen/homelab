@@ -1,0 +1,28 @@
+= OpenVPN
+
+Installing an openVPN server to administer and connect from the internet.
+
+== Base install
+
+Installing on xcp-ng.
+
+Debian with packages:
+```
+ddupdate docker-compose docker.io
+```
+
+ddupdate is used to set up dynamic dns.
+
+Installing with docker compose
+
+== PostMortem
+
+An electric outage caused the XCP cluster to reboot.
+
+All VM including the one hosting the openVPN restarted without issue.
+
+The openVPN container tried to restart but failed due to the presence of a sock file (to prevent concurrent starts).
+
+While attempting to remove that lock and get the server to restart, it restarted as a first launch and reset all the configuration to factory.
+
+I'm looking elsewhere for a more resilient solution.
