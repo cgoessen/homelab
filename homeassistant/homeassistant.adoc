@@ -1,6 +1,16 @@
 = Home Assistant
 
+NOTE: TODO move homeassistant on a dedicated machine, not using docker image. The current installation prevents some functionality (plugins...)
+
+Installed with docker compose:
+
+[source]
+----
+include::docker-compose.yaml[]
+----
+
 == ESPHome
 
 With the current installation (docker) some options are not available.
 ESPHome allows us to flash and manage espHome devices
+

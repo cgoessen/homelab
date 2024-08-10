@@ -5,3 +5,14 @@
 `certbot certonly --manual --preferred-challenges=dns --manual-auth-hook ./certbot-auth-hook.sh -m admin@my-domain -d foobar.my-domain`
 
 The hook script will ensure auto-renewal, it relies on dns challenge with aws route 53, it takes some time.
+
+== route53 challenge
+
+`apt install awscli`
+
+use the auth hook to create the dns TXT challenge
+
+[source,bash]
+----
+include::certbot-auth-hook.sh[]
+----

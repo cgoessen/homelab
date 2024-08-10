@@ -1,0 +1,20 @@
+= AuthX
+
+== OpenLDAP
+
+https://wiki.debian.org/LDAP/OpenLDAPSetup
+https://wiki.debian.org/LDAP/phpldapadmin
+
+Installed on id.gssn.net
+
+`# apt install ldap-utils slapd slapd-contrib phpldapadmin`
+
+== Keycloak
+
+with compose:
+
+[source]
+----
+include::keycloak/docker-compose.yaml[]
+----
+

@@ -46,3 +46,17 @@ nice to have:
 
 include::git/README.adoc[leveloffset=1]
 
+include::xcp-ng/xcp-ng.adoc[leveloffset=1]
+
+include::dns/unbound.adoc[leveloffset=1]
+
+include::authx/authX.adoc[leveloffset=1]
+
+include::certificates/certbot.adoc[leveloffset=1]
+
+include::vpn/zerotier.adoc[leveloffset=1]
+
+include::homeassistant/homeassistant.adoc[leveloffset=1]
+
+
+

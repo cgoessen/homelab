@@ -1,0 +1,21 @@
+services:
+  keycloak:
+    container_name: keycloak
+    image: "quay.io/keycloak/keycloak:25.0.2"
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+    volumes:
+      - keycloak:/opt/keycloak/data/
+      - /etc/letsencrypt/live/id.gssn.net:/etc/letsencrypt/live/id.gssn.net
+    command:
+      - start-dev
+      - --https-certificate-file=/etc/letsencrypt/live/id.gssn.net/cert.pem
+      - --https-certificate-key-file=/etc/letsencrypt/live/id.gssn.net/privkey.pem
+      - --https-protocols=TLSv1.3,TLSv1.2
+      - --https-port=8443
+      - --verbose
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+      - 8443:8443

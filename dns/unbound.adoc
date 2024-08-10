@@ -8,12 +8,12 @@ Installing on VM on xcp-ng
 
 == Change config and restart
 
-config path `etc/unbound/unbound.conf.d/local-gssn-net.conf`
+config path `/etc/unbound/unbound.conf.d/local-gssn-net.conf`
 
 check config:
 [source,bash]
 ----
-unbound-checkconf etc/unbound/unbound.conf.d/local-gssn-net.conf
+unbound-checkconf /etc/unbound/unbound.conf.d/local-gssn-net.conf
 ----
 
 restart:
