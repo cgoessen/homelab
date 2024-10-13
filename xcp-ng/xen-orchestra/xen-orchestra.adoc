@@ -5,7 +5,7 @@ https://xen-orchestra.com/docs/installation.html#from-the-sources[official docum
 == Prepare
 [source,bash]
 ----
-apt install vim certbot awslcli build-essential redis-server libpng-dev git python3-minimal libvhdi-utils lvm2 cifs-utils nfs-common ntfs-3g`
+apt install vim certbot awslcli build-essential redis-server libpng-dev git python3-minimal libvhdi-utils lvm2 cifs-utils nfs-common ntfs-3g
 ----
 
 Create certificates (see certificates]

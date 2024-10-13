@@ -25,5 +25,11 @@ start a vm
 
 https://github.com/xenserver/xe-guest-utilities/releases
 
+[source,bash]
+----
+wget https://github.com/xenserver/xe-guest-utilities/releases/download/v8.4.0/xe-guest-utilities_8.4.0-1_amd64.deb
+dpkg -i xe-guest-utilities_8.4.0-1_amd64.deb
+----
+
 
 
