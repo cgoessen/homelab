@@ -1,0 +1,58 @@
+= Xen Orchestra
+
+https://xen-orchestra.com/docs/installation.html#from-the-sources[official documentation]
+
+== Prepare
+[source,bash]
+----
+apt install vim certbot awslcli build-essential redis-server libpng-dev git python3-minimal libvhdi-utils lvm2 cifs-utils nfs-common ntfs-3g`
+----
+
+Create certificates (see certificates]
+
+=== Install node
+
+[source,bash]
+----
+# get nvm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
+# install LTS
+nvm install 20
+# yarn
+npm install --global yarn
+----
+
+== Build
+
+[source,bash]
+----
+# clone repo
+git clone -b master https://github.com/vatesfr/xen-orchestra
+cd xen-orchestra
+yarn
+# build can be flaky
+yarn build
+# creat service
+yarn global add forever
+yarn global add forever-service
+# todo rootless run
+cd packages/xo-server
+forever-service install orchestra -r root -s dist/cli.mjs
+----
+
+== Config
+
+With running user
+[source,bash]
+----
+mkdir -p ~/.config/xo-server
+cp packages/xo-server/sample.config.toml /etc/xo-server/config.toml
+----
+
+== Run
+
+[source,bash]
+----
+service orchestra start
+service orchestra status
+----
