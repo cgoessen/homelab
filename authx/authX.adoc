@@ -18,3 +18,8 @@ with compose:
 include::keycloak/docker-compose.yaml[]
 ----
 
+== FreeIPA
+
+freeIPA server is currently not in Debian repos.
+There is a docker image maintained by Red Hat.
+

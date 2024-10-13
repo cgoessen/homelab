@@ -1,0 +1,22 @@
+#FIXME not working
+services:
+  freeipa:
+    image: freeipa/freeipa-server:almalinux-9
+    read_only: true
+    environment:
+      IPA_SERVER_IP: 192.268.0.63
+    hostname: ipa.gssn.net
+    ports:
+      - '53:53'
+      - '53:53/udp'
+      - '80:80'
+      - '443:443'
+      - '389:389'
+      - '636:636'
+      - '88:88'
+      - '464:464'
+      - '88:88/udp'
+      - '464:464/udp'
+      - '123:123/udp'
+    volumes:
+      - /var/lib/ipa-data:/data:Z
