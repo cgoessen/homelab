@@ -23,3 +23,19 @@ include::keycloak/docker-compose.yaml[]
 freeIPA server is currently not in Debian repos.
 There is a docker image maintained by Red Hat.
 
+The setup was very tedious with the container, the required resources are quite high.
+
+I switch to a dedicated host for freeIPA, using fedora server 40 as base.
+
+https://www.freeipa.org/page/Quick_Start_Guide[official doc]
+
+[source,bash]
+
+=== Prepare
+
+----
+yum install vim htop xe-guest-utilities-lates freeipa-server
+----
+
+=== Add yubikey support
+https://gist.github.com/sshimko/9e0472f0f0b5d49a8ec19e1d2afb3199[doc]

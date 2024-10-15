@@ -4,7 +4,7 @@ services:
     image: freeipa/freeipa-server:almalinux-9
     read_only: true
     environment:
-      IPA_SERVER_IP: 192.268.0.63
+      IPA_SERVER_IP: 192.168.0.63
     hostname: ipa.gssn.net
     ports:
       - '53:53'
