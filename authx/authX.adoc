@@ -39,3 +39,13 @@ yum install vim htop xe-guest-utilities-lates freeipa-server
 
 === Add yubikey support
 https://gist.github.com/sshimko/9e0472f0f0b5d49a8ec19e1d2afb3199[doc]
+
+=== Client setup
+
+*kerberos*
+
+`apt install krb5-config krb5-user`
+
+*ldap (nss)*
+
+`apt install libnss-ldap`
