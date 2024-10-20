@@ -42,10 +42,14 @@ https://gist.github.com/sshimko/9e0472f0f0b5d49a8ec19e1d2afb3199[doc]
 
 === Client setup
 
-*kerberos*
+*auto create home dir*
 
-`apt install krb5-config krb5-user`
+/etc/pam.d/sshd:
+[source]
+----
+session required pam_mkhomedir.so skel=/etc/skel/ umask=0022
+----
 
-*ldap (nss)*
+`pam-auth-update --force --package`
 
-`apt install libnss-ldap`
+Home dirs are local only, for centralised need to setup nfs
