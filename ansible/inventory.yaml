@@ -20,8 +20,8 @@ infra:
       ansible_host: borg2.gssn.net
     borg3:
       ansible_host: borg3.gssn.net
-    id:
-      ansible_host: id.gssn.net
+    ipa:
+      ansible_host: ipa.gssn.net
 storage:
   hosts:
     vulcanDb:
