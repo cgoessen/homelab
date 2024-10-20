@@ -1,0 +1,51 @@
+= K3S
+
+https://k3s.io/[official website]
+
+== Pre install
+
+- Os: Debian
+- ipa managed
+- certificates
+
+== Install
+
+*first node*
+
+curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--token TOKEN" sh -
+
+*following nodes*
+
+curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--token TOKEN" sh - server --server https://k3s.example.com
+
+== helm
+
+[source,bash]
+----
+# get helm 3 (dashboard requires new version)
+curl https://raw.githubusercontent.com/kubernetes/helm/main/scripts/get-helm-3 > install-helm.sh
+kubectl -n kube-system create serviceaccount tiller
+kubectl create clusterrolebinding tiller --clusterrole cluster-admin --serviceaccount=kube-system:tiller
+cp /etc/rancher/k3s/k3s.yaml $HOME/.kube/config
+helm init --service-account tiller
+
+helm repo update
+----
+
+== dashboard
+
+Q&D to check all is fine
+
+[source,bash]
+----
+helm repo add kubernetes-dashboard https://kubernetes.github.io/dashboard/
+kubectl create ns kubernetes-dashboard
+helm upgrade --install kubernetes-dashboard kubernetes-dashboard/kubernetes-dashboard  --create-namespace --namespace kubernetes-dashboard
+----
+
+[source,bash]
+----
+kubectl -n kubernetes-dashboard port-forward svc/kubernetes-dashboard-kong-proxy 8443:443
+kubectl -n kubernetes-dashboard create token <sa>
+----
+
