@@ -1,0 +1,8 @@
+---
+- name: Check connection
+  hosts: all:!kubernetes:!xcp-ng
+
+  tasks:
+    - name: ping
+      ansible.builtin.ping:
+        data: reachable

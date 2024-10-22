@@ -1,32 +1,52 @@
-infra:
-  hosts:
-    dns:
-      ansible_host: dns.gssn.net
-    vpn:
-      ansible_host: vpn.gssn.net
-    xo:
-      ansible_host: xo.gssn.net
-    bastion:
-      ansible_host: bastion.gssn.net
-    ansible:
-      ansible_host: ansible.gssn.net
-    mini-xcp:
-      ansible_host: mini-xcp.gssn.net
-    lab-xcp:
-      ansible_host: lab-xcp.gssn.net
-    borg1:
-      ansible_host: borg1.gssn.net
-    borg2:
-      ansible_host: borg2.gssn.net
-    borg3:
-      ansible_host: borg3.gssn.net
-    ipa:
-      ansible_host: ipa.gssn.net
-storage:
-  hosts:
-    vulcanDb:
-      ansible_host: vulcandb.gssn.net
-automation:
-  hosts:
-    homeAssistant:
-      ansible_host: homeassistant.gssn.net
+all:
+  children:
+    storage:
+      hosts:
+        vulcandb.gssn.net:
+    infra:
+      children:
+        network:
+          hosts:
+            dns.gssn.net:
+            vpn.gssn.net:
+        xcp-ng:
+          hosts:
+            mini-xcp.gssn.net:
+            lab-xcp.gssn.net:
+            ryzen-xcp.gssn.net:
+      hosts:
+        xo.gssn.net:
+        bastion.gssn.net:
+        ansible.gssn.net:
+        ipa.gssn.net:
+        cargo.gssn.net:
+    kubernetes:
+      hosts:
+        borg[01:04].gssn.net:
+    automation:
+      hosts:
+        homeassistant.gssn.net:
+    monitoring:
+      hosts:
+        prometheus.gssn.net:
+        grafana.gssn.net:
+    debian:
+      hosts:
+        vulcandb.gssn.net:
+        dns.gssn.net:
+        vpn.gssn.net:
+        prometheus.gssn.net:
+        grafana.gssn.net:
+        borg[01:04].gssn.net:
+        xo.gssn.net:
+        bastion.gssn.net:
+        ansible.gssn.net:
+        cargo.gssn.net:
+    fedora:
+      hosts:
+        ipa.gssn.net:
+    xcp-ng:
+      hosts:
+        mini-xcp.gssn.net:
+        lab-xcp.gssn.net:
+        ryzen-xcp.gssn.net:

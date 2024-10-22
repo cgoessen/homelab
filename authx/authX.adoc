@@ -42,14 +42,14 @@ https://gist.github.com/sshimko/9e0472f0f0b5d49a8ec19e1d2afb3199[doc]
 
 === Client setup
 
-use `ipa-client install` from `freeipa-client`
+use `ipa-client-install` from `freeipa-client`
 
 *auto create home dir*
 
 /etc/pam.d/sshd:
 [source]
 ----
-session required pam_mkhomedir.so skel=/etc/skel/ umask=0022
+session required pam_mkhomedir.so skel=/etc/skel/ umask=0077
 ----
 
 `pam-auth-update --force --package`
