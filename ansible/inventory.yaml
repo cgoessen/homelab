@@ -11,7 +11,9 @@ all:
             vpn.gssn.net:
         xcp-ng:
           hosts:
+            eenie-xcp.gssn.net:
             mini-xcp.gssn.net:
+            moo-xcp.gssn.net:
             lab-xcp.gssn.net:
             ryzen-xcp.gssn.net:
       hosts:
@@ -30,6 +32,7 @@ all:
       hosts:
         prometheus.gssn.net:
         grafana.gssn.net:
+        obs.gssn.net:
     debian:
       hosts:
         vulcandb.gssn.net:
@@ -42,11 +45,14 @@ all:
         bastion.gssn.net:
         ansible.gssn.net:
         cargo.gssn.net:
+        obs.gssn.net:
     fedora:
       hosts:
         ipa.gssn.net:
     xcp-ng:
       hosts:
+        eenie-xcp.gssn.net:
         mini-xcp.gssn.net:
+        moo-xcp.gssn.net:
         lab-xcp.gssn.net:
         ryzen-xcp.gssn.net:
