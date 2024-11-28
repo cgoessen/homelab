@@ -1,0 +1,16 @@
+= Prometheus
+
+https://prometheus.io/[prometheus.io]
+
+== Generating Service Discovery Files
+
+(WIP)
+
+- create an inventory of the machines tracking:
+    * A rec
+    * name
+    * os and version
+    * service
+    * platform (xen, proxmox, k8s...)
+- script to convert to sdfiles, ansible inventory, backstage
+- sync

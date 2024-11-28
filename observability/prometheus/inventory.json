@@ -1,0 +1,32 @@
+[
+  {
+    "labels": {
+      "service": "storage",
+      "os": "debian",
+      "os_version": "12"
+    },
+    "targets": [
+      "vulcandb.gssn.net:9100"
+    ]
+  },
+  {
+    "labels": {
+      "service": "nameserver",
+      "os": "debian",
+      "os_version": "12"
+    },
+    "targets": [
+      "dns.gssn.net:9100"
+    ]
+  },
+  {
+    "labels": {
+      "service": "ipa",
+      "os": "fedora",
+      "os_version": "14"
+    },
+    "targets": [
+      "ipa.gssn.net:9100"
+    ]
+  }
+]

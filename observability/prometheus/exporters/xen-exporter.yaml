@@ -1,0 +1,48 @@
+version: '3.8'
+# doc: https://github.com/MikeDombo/xen-exporter/tree/master
+services:
+  eenie:
+    container_name: eenie
+    image: ghcr.io/mikedombo/xen-exporter:latest
+    restart: unless-stopped
+    ports:
+      - 9101:9100
+    environment:
+      - XEN_HOST=eenie-xcp.gssn.net
+      - XEN_USER=$XEN_USER
+      - XEN_PASSWORD=$XEN_PASSWORD
+      - XEN_SSL_VERIFY=false
+
+  mini:
+    container_name: mini
+    image: ghcr.io/mikedombo/xen-exporter:latest
+    restart: unless-stopped
+    ports:
+      - 9102:9100
+    environment:
+      - XEN_HOST=mini-xcp.gssn.net
+      - XEN_USER=$XEN_USER
+      - XEN_PASSWORD=$XEN_PASSWORD
+      - XEN_SSL_VERIFY=false
+  moo:
+    container_name: mini
+    image: ghcr.io/mikedombo/xen-exporter:latest
+    restart: unless-stopped
+    ports:
+      - 9103:9100
+    environment:
+      - XEN_HOST=moo-xcp.gssn.net
+      - XEN_USER=$XEN_USER
+      - XEN_PASSWORD=$XEN_PASSWORD
+      - XEN_SSL_VERIFY=false
+  ryzen:
+    container_name: ryzen
+    image: ghcr.io/mikedombo/xen-exporter:latest
+    restart: unless-stopped
+    ports:
+      - 9110:9100
+    environment:
+      - XEN_HOST=xcp-ryzen.gssn.net
+      - XEN_USER=$XEN_USER
+      - XEN_PASSWORD=$XEN_PASSWORD
+      - XEN_SSL_VERIFY=false

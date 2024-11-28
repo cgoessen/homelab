@@ -1,0 +1,44 @@
+[
+  {
+    "labels": {
+      "service": "xen",
+      "os": "xcp-ng",
+      "os_version": "8.2.1",
+      "instance": "eenie-xcp.gssn.net"
+    },
+    "targets": [
+      "localhost:9101"
+    ]
+  },
+  {
+    "labels": {
+      "service": "xen",
+      "os": "xcp-ng",
+      "os_version": "8.2.1",
+      "instance": "mini-xcp.gssn.net"
+    },
+    "targets": [
+      "localhost:9102"
+    ]
+  },{
+  "labels": {
+    "service": "xen",
+    "os": "xcp-ng",
+    "os_version": "8.2.1",
+    "instance": "moo-xcp.gssn.net"
+  },
+  "targets": [
+    "localhost:9103"
+  ]
+  },{
+    "labels": {
+      "service": "xen",
+      "os": "xcp-ng",
+      "os_version": "8.2.1",
+      "instance": "xcp-ryzen.gssn.net"
+    },
+    "targets": [
+      "localhost:9110"
+    ]
+  }
+]

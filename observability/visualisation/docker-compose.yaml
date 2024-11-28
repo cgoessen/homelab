@@ -1,7 +1,7 @@
 services:
   lancache:
     container_name: grafana
-    image: "grafana/grafana"
+    image: "docker.io/grafana/grafana"
     volumes:
       - "/opt/grafana:/var/lib/grafana"
     restart: unless-stopped
