@@ -27,6 +27,7 @@ curl https://raw.githubusercontent.com/kubernetes/helm/main/scripts/get-helm-3 >
 kubectl -n kube-system create serviceaccount tiller
 kubectl create clusterrolebinding tiller --clusterrole cluster-admin --serviceaccount=kube-system:tiller
 cp /etc/rancher/k3s/k3s.yaml $HOME/.kube/config
+./install-helm.sh
 helm init --service-account tiller
 
 helm repo update

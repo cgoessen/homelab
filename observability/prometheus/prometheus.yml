@@ -39,6 +39,11 @@ scrape_configs:
 
   - job_name: 'inventory'
     honor_labels: true
+    relabel_configs:
+      - source_labels: [ __address__ ]
+        target_label: instance
+        regex: '([^:]+)(:[0-9]+)?'
+        replacement: '${1}'
     file_sd_configs:
       - files:
           - 'inventory.json'
@@ -57,4 +62,4 @@ scrape_configs:
           ups: "eaton"
     metrics_path: '/ups_metrics'
     params:
-      ups: ["eaton"]
+      ups: ['eaton']

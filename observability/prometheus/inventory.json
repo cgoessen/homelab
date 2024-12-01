@@ -28,5 +28,86 @@
     "targets": [
       "ipa.gssn.net:9100"
     ]
+  },{
+    "labels": {
+      "service": "xen-orchestra",
+      "os": "debian",
+      "os_version": "12"
+    },
+    "targets": [
+      "xo.gssn.net:9100"
+    ]
+  },{
+    "labels": {
+      "service": "bastion",
+      "os": "debian",
+      "os_version": "12"
+    },
+    "targets": [
+      "bastion.gssn.net:9100"
+    ]
+  },{
+    "labels": {
+      "service": "cargo",
+      "os": "debian",
+      "os_version": "12"
+    },
+    "targets": [
+      "cargo.gssn.net:9100"
+    ]
+  },{
+    "labels": {
+      "service": "ansible",
+      "os": "debian",
+      "os_version": "12"
+    },
+    "targets": [
+      "ansible.gssn.net:9100"
+    ]
+  },{
+    "labels": {
+      "service": "prometheus,grafana",
+      "os": "debian",
+      "os_version": "12"
+    },
+    "targets": [
+      "obs.gssn.net:9100"
+    ]
+  },{
+    "labels": {
+      "service": "kubernetes",
+      "os": "debian",
+      "os_version": "12"
+    },
+    "targets": [
+      "borg01.gssn.net:9100"
+    ]
+  },{
+    "labels": {
+      "service": "kubernetes",
+      "os": "debian",
+      "os_version": "12"
+    },
+    "targets": [
+      "borg02.gssn.net:9100"
+    ]
+  },{
+    "labels": {
+      "service": "kubernetes",
+      "os": "debian",
+      "os_version": "12"
+    },
+    "targets": [
+      "borg03.gssn.net:9100"
+    ]
+  },{
+    "labels": {
+      "service": "kubernetes",
+      "os": "debian",
+      "os_version": "12"
+    },
+    "targets": [
+      "borg04.gssn.net:9100"
+    ]
   }
 ]
