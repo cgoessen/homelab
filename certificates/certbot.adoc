@@ -2,7 +2,7 @@
 
 == Create new certificate
 
-`certbot certonly --manual --preferred-challenges=dns --manual-auth-hook ./certbot-auth-hook.sh -m admin@my-domain -d foobar.my-domain`
+`certbot certonly --manual --preferred-challenges=dns --post-hook /my/post/hook --manual-auth-hook ./certbot-auth-hook.sh -m admin@my-domain -d foobar.my-domain`
 
 The hook script will ensure auto-renewal, it relies on dns challenge with aws route 53, it takes some time.
 

@@ -1,5 +1,15 @@
 = Home Assistant
 
+== Supervised
+
+https://github.com/home-assistant/supervised-installer[documentation]
+
+installed on xen vm
+
+NOTE: official documentation calls for install of network manager, it will mess up all previous network configuration. Reset resolvconf and disable ipv6 after.
+
+= Old
+
 NOTE: TODO move homeassistant on a dedicated machine, not using docker image. The current installation prevents some functionality (plugins...)
 
 Installed with docker compose:

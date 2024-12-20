@@ -3,7 +3,7 @@
 source ~/.aws-credentials
 record="
   {
-              \"Comment\": \"Create or update vpn record\",
+              \"Comment\": \"Create or update record\",
               \"Changes\": [{
               \"Action\": \"UPSERT\",
                           \"ResourceRecordSet\": {
