@@ -21,6 +21,16 @@
   },
   {
     "labels": {
+      "service": "homeassistant",
+      "os": "debian",
+      "os_version": "12"
+    },
+    "targets": [
+      "homeassistant.gssn.net:9100"
+    ]
+  },
+  {
+    "labels": {
       "service": "ipa",
       "os": "fedora",
       "os_version": "14"
