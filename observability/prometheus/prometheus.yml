@@ -54,6 +54,49 @@ scrape_configs:
       - files:
           - 'xcp.json'
 
+  - job_name: blackbox-ping
+    metrics_path: /probe
+    params:
+      module: [icmp]
+    static_configs:
+      - targets:
+          - 192.168.1.1
+          - 192.168.0.53
+          - 1.1.1.1
+          - 8.8.8.8
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: 127.0.0.1:9115 # Blackbox exporter.
+
+  - job_name: 'blackbox-http'
+    metrics_path: /probe
+    honor_labels: true
+    params:
+      module: [ http_2xx ]  # Look for a HTTP 200 response.
+    static_configs:
+      - targets:
+          - https://grafana.gssn.net
+          - https://prometheus.gssn.net
+          - https://jellyfin.gssn.net
+          - https://xo.gssn.net
+          - https://homeassistant.gssn.net
+          - https://google.com
+          - https://cloudflare.net
+          - http://192.168.1.1
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: 127.0.0.1:9115  # The blackbox exporter's real hostname:port.
+  - job_name: 'blackbox_exporter'  # collect blackbox exporter's operational metrics.
+    static_configs:
+      - targets: ['127.0.0.1:9115']
 
   - job_name: eaton
     static_configs:

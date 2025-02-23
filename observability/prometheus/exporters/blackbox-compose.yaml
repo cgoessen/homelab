@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  blackbox_exporter:
+    container_name: blackbox_exporter
+    image: quay.io/prometheus/blackbox-exporter:latest
+    restart: unless-stopped
+    ports:
+      - 9115/tcp
+    command:
+      - '--config.file=/config/blackbox.yml'
+    volumes:
+      - '/etc/prometheus:/config:ro,rslave'
