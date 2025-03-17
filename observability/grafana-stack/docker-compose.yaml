@@ -1,0 +1,37 @@
+networks:
+  grafana:
+
+services:
+  loki:
+    container_name: loki
+    image: docker.io/grafana/loki:latest
+    volumes:
+      - /opt/loki:/etc/loki/
+    ports:
+      - "3100:3100"
+    command: -config.file=/etc/loki/local-config.yaml
+    networks:
+      - grafana
+  promtail:
+    container_name: promtail
+    image: docker.io/grafana/promtail:latest
+    volumes:
+      - /var/log:/var/log
+      - /opt/loki/promtail:/etc/promtail/
+    command: -config.file=/etc/promtail/config.yml
+    networks:
+      - grafana
+  grafana:
+    container_name: grafana
+    image: "docker.io/grafana/grafana"
+    volumes:
+      - "/opt/grafana:/var/lib/grafana"
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      GF_SERVER_ROOT_URL: https://grafana.gssn.net
+      GF_INSTALL_PLUGINS: "grafana-clock-panel"
+      GF_FEATURE_TOGGLES_ENABLE: alertingSimplifiedRouting,alertingQueryAndExpressionsStepMode
+    networks:
+      - grafana

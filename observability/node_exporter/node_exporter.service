@@ -1,0 +1,14 @@
+[Unit]
+Description=Node Exporter
+Requires=node_exporter.socket
+
+[Service]
+#change me at some point
+User=root
+# Fallback when environment file does not exist
+Environment=OPTIONS=
+# adapt path for distro
+ExecStart=/usr/bin/node_exporter --web.systemd-socket $OPTIONS
+
+[Install]
+WantedBy=multi-user.target
