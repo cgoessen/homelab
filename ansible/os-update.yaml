@@ -1,0 +1,21 @@
+---
+- name: update os
+  hosts: all
+#  hosts: debian:!down
+  gather_facts: True
+  become: true
+  strategy: free
+
+  tasks:
+    - name: apt update
+      apt:
+        upgrade: yes
+        update_cache: yes
+        cache_valid_time: 86400 #One day
+      when: ansible_facts['os_family'] == 'Debian'
+
+    - name: dnf update
+      dnf:
+        name: "*"
+        state: latest
+      when: ansible_facts['os_family'] == 'RedHat'
