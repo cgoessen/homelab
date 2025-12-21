@@ -1,0 +1,22 @@
+---
+- name: collect all facts
+  hosts: all
+
+  tasks:
+    - name: print facts
+      debug:
+        var: ansible_facts["kernel"]
+    - name: Generate report
+      local_action:
+        module: copy
+        dest: ./hosts-facts.json
+        content: |
+          {
+          {% for host in groups['all'] %}
+          {% if hostvars[host]['ansible_facts'] is defined %}
+          "{{ host }}": {{ hostvars[host]['ansible_facts'] | to_nice_json(indent=2) }},
+          {% else %}
+          "{{ host }}" : undefined
+          {% endif %}
+          {% endfor %}
+          }

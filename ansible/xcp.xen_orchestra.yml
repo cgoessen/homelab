@@ -1,0 +1,5 @@
+plugin: community.general.xen_orchestra
+api_host: xo.gssn.xyz
+#user: ANSIBLE_XO_USER
+#password: ANSIBLE_XO_PASSWORD
+validate_certs: false

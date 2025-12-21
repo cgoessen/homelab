@@ -1,6 +1,6 @@
 ---
 - name: update os
-  hosts: all
+  hosts: all:!down
 #  hosts: debian:!down
   gather_facts: True
   become: true

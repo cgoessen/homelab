@@ -1,6 +1,6 @@
 ---
 - name: Check connection
-  hosts: all:!k8s:!xcp
+  hosts: running:&with_ip
   gather_facts: True
 
   tasks:

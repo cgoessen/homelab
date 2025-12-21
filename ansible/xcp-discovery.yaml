@@ -1,0 +1,37 @@
+---
+- name: collect all facts
+  hosts: running:&with_ip
+  gather_facts: True
+
+  tasks:
+    - name: print facts
+      debug:
+        var: ansible_facts["kernel"]
+    - name: Unbound
+      local_action:
+        module: "copy"
+        dest: ./local-xcp-auto-discovery.conf
+        content: |
+          server:
+              local-zone: "gssn.xyz" static
+              local-zone: "gssn.net" static
+          {% for host in groups['running'] %}
+          {% if hostvars[host]['ansible_facts'] is defined and hostvars[host]['ansible_facts']['fqdn'] is defined and hostvars[host]['ansible_facts']['default_ipv4'] is defined %}
+              local-data: "{{ hostvars[host]['ansible_facts']['fqdn'] }} IN A {{ hostvars[host]['ansible_facts']['default_ipv4']['address'] }}"
+          {% endif %}
+          {% endfor %}
+    - name: Generate report
+      local_action:
+        module: "copy"
+        dest: ./xcp-hosts-facts.json
+        content: |
+          {
+          {% for host in groups['running'] %}
+          {% if hostvars[host]['ansible_facts'] is defined %}
+          "{{ hostvars[host]['ansible_facts']['fqdn'] }}": {{ hostvars[host]['ansible_facts'] | to_nice_json(indent=2) }},
+          {% else %}
+          "{{ host }}" : undefined
+          {% endif %}
+          {% endfor %}
+          "dummy" : {}
+          }

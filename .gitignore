@@ -1,2 +1,6 @@
 .idea/*
 /dns/.aws-credentials
+.terraform
+.terraform.lock.hcl
+*.tfstate*
+../smut/stash/

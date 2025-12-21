@@ -1,0 +1,14 @@
+= Freeipa
+== Enroll
+
+Install `freeipa-client`
+
+[source,bash]
+----
+ipa-client-install --force-join --domain gssn.net --realm GSSN.NET --server ipa.gssn.net --mkhomedir --hostname <FQDN HOSTNAME>
+----
+
+== Troubleshooting
+
+Sometimes dist upgrade breaks the configuration.
+Re-enroll with --force-join to fix
