@@ -1,0 +1,22 @@
+server {
+    listen 443 ssl;
+    listen [::]:443 ssl;
+    http2 on;
+
+    ssl_certificate /etc/letsencrypt/live/git.gssn.xyz/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/git.gssn.xyz/privkey.pem;
+    server_name git.gssn.xyz;
+
+    location / {
+        proxy_pass http://127.0.0.1:3000; # Port 3000 is the default Forgejo port
+
+        proxy_set_header Connection $http_connection;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+
+        client_max_body_size 512M;
+    }
+}
