@@ -32,10 +32,10 @@ data "xenorchestra_network" "network" {
   pool_id = data.xenorchestra_pool.pool.id
 }
 
-resource "xenorchestra_vm" "sandbox" {
+resource "xenorchestra_vm" "git" {
   memory_max = 2147467264
   cpus = 2
-  name_label = "new_vm"
+  name_label = "git"
   template = data.xenorchestra_template.debian_trixie_template.id
   hvm_boot_firmware = "uefi"
 
@@ -45,7 +45,7 @@ resource "xenorchestra_vm" "sandbox" {
 
   disk {
     sr_id = data.xenorchestra_sr.local-eenie-sr.id
-    name_label = "new_vm-sr"
-    size = 16106127360
+    name_label = "git-sr"
+    size = 16106127360 #template size
   }
 }
