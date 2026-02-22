@@ -10,4 +10,4 @@ I want a solution that provides some runners for CI/CD.
 
 That solution should be as lean as possible.
 
-include::gitea/README.adoc[leveloffset=1]
+include::forgejo/README.adoc[leveloffset=1]

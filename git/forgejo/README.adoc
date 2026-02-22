@@ -1,0 +1,56 @@
+= ForgeJo
+
+https://git.gssn.xyz[Homepage]
+
+https://forgejo.org/docs/latest/[Documentation]
+
+== Installation
+
+Installed with `docker-compose` on a dedicated host.
+
+== Configuration
+
+==== asciidoctor
+
+Under config/app.ini
+
+[source,ini]
+----
+[markup.asciidoc]
+ENABLED = true
+NEED_POSTPROCESS = true
+FILE_EXTENSIONS = .adoc,.asciidoc
+RENDER_COMMAND = "asciidoctor --embedded --safe-mode=secure --out-file=- -"
+IS_INPUT_FILE = false
+----
+
+Make sure asciidoctor is installed on the image (`apk add asciidoctor`).
+
+==== OpenID
+
+Admin>Identity & access>Authentication sources
+
+Create an OAuth2 source to authentik.
+
+in app.ini
+
+[source,ini]
+----
+[service]
+DISABLE_REGISTRATION = false
+....
+ALLOW_ONLY_EXTERNAL_REGISTRATION = true
+----
+
+Although it should work with the external only `DISABLE_REGISTRATION` seems to be required for user creation.
+
+==== ssh git
+
+in app.ini
+
+[source,ini]
+----
+DISABLE_SSH = false
+SSH_PORT = 222
+SSH_LISTEN_PORT = 22
+----
