@@ -70,7 +70,7 @@ redirectToHttps = true
 #
 # It SHOULD be defined in case the IP address of the current machine is not
 # good enough (e.g. a domain name must be used or there is a reverse proxy).
-publicUrl = 'https://xo.gssn.net'
+publicUrl = 'https://xo.gssn.xyz'
 
 # Uncomment this if xo-server is behind a reverse proxy to make xo-server use
 # X-Forwarded-* headers to determine the IP address of clients.
@@ -139,7 +139,7 @@ port = 80
  # certificate authority up to the root.
  #
  # Default: undefined
- cert = '/etc/letsencrypt/live/xo.gssn.net/fullchain.pem'
+ cert = '/etc/letsencrypt/live/xo.gssn.xyz/fullchain.pem'
 
  # File containing the private key (PEM format).
  #
@@ -147,7 +147,7 @@ port = 80
  # server startup.
  #
  # Default: undefined
- key = '/etc/letsencrypt/live/xo.gssn.net/privkey.pem'
+ key = '/etc/letsencrypt/live/xo.gssn.xyz/privkey.pem'
 
 # List of files/directories which will be served.
 [http.mounts]
