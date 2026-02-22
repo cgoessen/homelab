@@ -31,7 +31,7 @@ wget https://github.com/xenserver/xe-guest-utilities/releases/download/v8.4.0/xe
 dpkg -i xe-guest-utilities_8.4.0-1_amd64.deb
 ----
 
-include::xen-orchestra/xen-orchestra.adoc[leveloffset=1]
+include::xen-orchestra/README.adoc[leveloffset=1]
 
 
 

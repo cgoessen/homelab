@@ -1,6 +1,8 @@
 = Xen Orchestra
 
-https://xen-orchestra.com/docs/installation.html#from-the-sources[official documentation]
+https://xo.gssn.xyz/[Homepage]
+
+https://xen-orchestra.com/docs/installation.html#from-the-sources[Documentation]
 
 == Prepare
 [source,bash]
