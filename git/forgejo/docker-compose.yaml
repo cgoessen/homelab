@@ -13,7 +13,9 @@ services:
     restart: 'unless-stopped'
 
   server:
-    image: codeberg.org/forgejo/forgejo:13
+    #image: codeberg.org/forgejo/forgejo:13
+    build:
+      dockerfile: forgejo.Dockerfile
     container_name: forgejo
     environment:
       - USER_UID=1000
