@@ -44,7 +44,25 @@ resource "xenorchestra_vm" "git" {
   }
 
   disk {
-    sr_id = data.xenorchestra_sr.local-eenie-sr.id
+    sr_id = data.xenorchestra_sr.local-moo-sr.id
+    name_label = "git-sr"
+    size = 16106127360 #template size
+  }
+}
+
+resource "xenorchestra_vm" "image-registry" {
+  memory_max = 2147467264
+  cpus = 2
+  name_label = "git"
+  template = data.xenorchestra_template.debian_trixie_template.id
+  hvm_boot_firmware = "uefi"
+
+  network {
+    network_id = data.xenorchestra_network.network.id
+  }
+
+  disk {
+    sr_id = data.xenorchestra_sr.local-moo-sr.id
     name_label = "git-sr"
     size = 16106127360 #template size
   }
