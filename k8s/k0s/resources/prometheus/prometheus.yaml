@@ -1,0 +1,15 @@
+apiVersion: helm.k0sproject.io/v1beta1
+kind: Chart
+metadata:
+  name: prometheus
+  namespace: kube-system
+spec:
+  chartName: prometheus-community/prometheus
+  version: "14.6.1"
+  namespace: default
+  values: |
+    alertmanager:
+      persistentVolume:
+        enabled: false
+  repository:
+    url: https://prometheus-community.github.io/helm-charts
