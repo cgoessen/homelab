@@ -5,7 +5,7 @@ Install `freeipa-client`
 
 [source,bash]
 ----
-ipa-client-install --force-join --domain gssn.net --realm GSSN.NET --server ipa.gssn.net --mkhomedir --hostname <FQDN HOSTNAME>
+ipa-client-install --force-join --domain gssn.net --realm GSSN.NET --server ipa.gssn.net --mkhomedir --ntp-server=0.europe.pool.ntp.org --hostname $(hostname -f)
 ----
 
 == Troubleshooting

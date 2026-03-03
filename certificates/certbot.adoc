@@ -22,6 +22,6 @@ include::certbot-auth-hook.sh[]
 
 [source,bash]
 ----
-export DOMAIN=foo@gssn.xyz
+export DOMAIN=foo.gssn.xyz
 certbot certonly --authenticator dns-infomaniak --dns-infomaniak-credentials /root/dns_infomaniak.ini --server  https://acme-v02.api.letsencrypt.org/directory --agree-tos --rsa-key-size 4096 -d ${DOMAIN} --email 'root@gssn.xyz' --no-eff-email --installer nginx
 ----
