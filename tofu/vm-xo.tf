@@ -50,10 +50,10 @@ resource "xenorchestra_vm" "git" {
   }
 }
 
-resource "xenorchestra_vm" "image-registry" {
-  memory_max = 2147467264
-  cpus = 2
-  name_label = "git"
+resource "xenorchestra_vm" "borg05" {
+  memory_max = 6442401792
+  cpus = 4
+  name_label = "borg05"
   template = data.xenorchestra_template.debian_trixie_template.id
   hvm_boot_firmware = "uefi"
 
@@ -63,7 +63,7 @@ resource "xenorchestra_vm" "image-registry" {
 
   disk {
     sr_id = data.xenorchestra_sr.local-moo-sr.id
-    name_label = "git-sr"
+    name_label = "borg05-sr"
     size = 16106127360 #template size
   }
 }
