@@ -1,0 +1,136 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: ost-kube-gssn-xyz
+spec:
+  dnsNames:
+    - ost-kube.gssn.xyz
+  issuerRef:
+    kind: ClusterIssuer
+    name: letsencrypt-prod
+  secretName: ost-kube-gssn-xyz-tls
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: GatewayClass
+metadata:
+  name: eg
+spec:
+  controllerName: gateway.envoyproxy.io/gatewayclass-controller
+---
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: EnvoyProxy
+metadata:
+  name: proxy
+spec:
+  provider:
+    type: Kubernetes
+    kubernetes:
+      envoyService:
+        annotations:
+          metallb.io/loadBalancerIPs: 192.168.30.10
+
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+#  annotations:
+#    cert-manager.io/cluster-issuer: letsencrypt-prod
+  name: eg
+spec:
+  gatewayClassName: eg
+#  infrastructure:
+#    parametersRef:
+#      group: gateway.envoyproxy.io
+#      kind: EnvoyProxy
+#      name: proxy
+  listeners:
+    - name: http
+      protocol: HTTP
+      port: 80
+    - name: https
+      protocol: HTTPS
+      hostname: ost-kube.gssn.xyz
+      port: 443
+      tls:
+        mode: Terminate
+#        certificateRefs:
+#          - kind: Secret
+#            name: eg-https
+        certificateRefs:
+          - kind: Secret
+            group: ""
+            name: ost-kube-gssn-xyz-tls
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: openspeedtest
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: openspeedtest
+  labels:
+    app: openspeedtest
+    service: openspeedtest
+spec:
+  ports:
+    - name: http
+      port: 3000
+      targetPort: 3000
+  selector:
+    app: openspeedtest
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: openspeedtest
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: openspeedtest
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: openspeedtest
+        version: v1
+    spec:
+      serviceAccountName: openspeedtest
+      containers:
+        - image: docker.io/openspeedtest/latest:latest
+          imagePullPolicy: IfNotPresent
+          name: openspeedtest
+          ports:
+            - containerPort: 3000
+          env:
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: openspeedtest
+spec:
+  parentRefs:
+    - name: eg
+  hostnames:
+    - "ost-kube.gssn.xyz"
+  rules:
+    - backendRefs:
+        - group: ""
+          kind: Service
+          name: openspeedtest
+          port: 3000
+          weight: 1
+      matches:
+        - path:
+            type: PathPrefix
+            value: /
