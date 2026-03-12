@@ -1,0 +1,63 @@
+= External DNS
+
+https://github.com/guillomep/external-dns-unbound-webhook[unbound webhook]
+
+== Installation
+
+=== Unbound
+
+Run setup
+`unbound-control-setup`
+
+Add configuration
+[source,conf]
+----
+remote-control:
+  control-enable: yes
+  # by default the control interface is is 127.0.0.1 and ::1 and port 8953
+  # it is possible to use a unix socket too
+  #control-interface: /run/unbound.ctl
+  control-interface: 0.0.0.0
+  control-port: 8953
+  control-use-cert: yes
+  server-key-file: /etc/unbound/unbound_server.key
+  server-cert-file: /etc/unbound/unbound_server.pem
+  control-key-file: /etc/unbound/unbound_control.key
+  control-cert-file: /etc/unbound/unbound_control.pem
+----
+
+=== K8s
+
+Install helm chart:
+
+[source,bash]
+----
+helm install external-dns-unbound external-dns/external-dns -f external-dns-unbound-values.yaml -n external-dns`
+----
+
+external-dns-unbound-values.yaml:
+[source,yaml]
+----
+include::external-dns-unbound.yaml[]
+----
+
+Setup credentials:
+[source,bash]
+----
+kubectl create secret generic unbound-certificates --from-file=ca.pem='<PATH_TO_CA_PEM>' --from-file=client.pem='<PATH_TO_CLIENT_PEM>' --from-file=client.key='<PATH_TO_CLIENT_KEY>' -n external-dns`
+----
+
+With certs and keys generated from `unbound-control-setup`
+
+Edit `ClusterRole external-dns-unbound` and add:
+[source,yaml]
+----
+rules:
+- apiGroups: [""]
+  resources: ["namespaces"]
+  verbs: ["get","watch","list"]
+- apiGroups: ["gateway.networking.k8s.io"]
+  resources: ["gateways","httproutes","grpcroutes","tlsroutes","tcproutes","udproutes"]
+  verbs: ["get","watch","list"]
+----
+

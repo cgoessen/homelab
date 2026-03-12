@@ -1,0 +1,40 @@
+namespace: external-dns
+policy: sync
+provider:
+  name: webhook
+  webhook:
+    image:
+      repository: ghcr.io/guillomep/external-dns-unbound-webhook
+      tag: v0.1.0
+    env:
+      - name: UNBOUND_HOST
+        value: tcp://192.168.0.53:8953
+      - name: UNBOUND_CA_PEM_PATH
+        value: /usr/local/etc/unbound/ca.pem
+      - name: UNBOUND_CERT_PEM_PATH
+        value: /usr/local/etc/unbound/client.pem
+      - name: UNBOUND_KEY_PEM_PATH
+        value: /usr/local/etc/unbound/client.key
+    livenessProbe:
+      httpGet:
+        path: /health
+        port: http-webhook
+      initialDelaySeconds: 10
+      timeoutSeconds: 5
+    readinessProbe:
+      httpGet:
+        path: /ready
+        port: http-webhook
+      initialDelaySeconds: 10
+      timeoutSeconds: 5
+    extraVolumeMounts:
+      - name: unbound-certificates
+        mountPath: /usr/local/etc/unbound/
+extraVolumes:
+  - name: unbound-certificates
+    secret:
+      secretName: unbound-certificates
+
+extraArgs:
+  - "--source=gateway-httproute"
+  - "--txt-prefix=reg-%{record_type}-"
